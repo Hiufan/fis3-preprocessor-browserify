@@ -1,0 +1,37 @@
+{
+  "name": "fis3-preprocessor-browserify",
+  "version": "1.0.0",
+  "description": "browserify support for fis3.Supportting ES2015 as well.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiufan/fis3-preprocessor-browserify.git"
+  },
+  "keywords": [
+    "fis3",
+    "browerify",
+    "ES2015"
+  ],
+  "author": "Hiufan@qq.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hiufan/fis3-preprocessor-browserify/issues"
+  },
+  "homepage": "https://github.com/Hiufan/fis3-preprocessor-browserify#readme",
+  "dependencies": {
+    "browserify": "^11.2.0",
+    "deasync": "^0.1.3",
+    "debowerify": "^1.3.1",
+    "through2": "^2.0.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "babelify": "^7.3.0"  
+  }
+}
