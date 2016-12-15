@@ -22,6 +22,8 @@ module.exports = function (file, settings) {
 
     bundler.transform(embed(realpath));
 
+    bundler.transform(debowerify);
+
     // 寻找依赖文件
     bundler.on('file', function (depFilePath) {
         if (depFilePath !== file.realpath) {
