@@ -25,4 +25,6 @@ fis.match('main.js', {
 });
 ```
 
+>   支持fis3的`__inline()`、`__uri()`等内置语法。
+
 
