@@ -3,9 +3,12 @@
 var deasync = require('deasync');
 var browserify = require('browserify');
 var debowerify = require('debowerify');
+var detective = require('detective');
+var path = require('path');
+var fs = require('fs');
 
 var babelify = require('babelify'); // es2015 babel 转码
-var embed = require('./embed');  // 支持fis3的资源内嵌功能
+var embed = require('./embed'); // fis3内置语法处理
 
 module.exports = function (file, settings) {
     var realpath = file.realpath; // 文件的真实路径
@@ -20,12 +23,21 @@ module.exports = function (file, settings) {
         bundler.transform(babelify.configure({presets: settings.es2015.presets}));
     }
 
-    bundler.transform(embed(realpath));
+    bundler.transform(embed(file));
 
     bundler.transform(debowerify);
 
-    // 寻找依赖文件
+    // when find dependecy files
     bundler.on('file', function (depFilePath) {
+        var depFileDirname = fis.util.pathinfo(depFilePath).dirname;
+        var depFileContent = fs.readFileSync(depFilePath);
+        var tmpl = detective(depFileContent, {word: '__inline'})[0];
+        // template cache
+        if(!!tmpl) {
+            var tmplRealPath = path.resolve(depFileDirname, tmpl);
+            file.cache.addDeps(tmplRealPath);
+        }
+        // js cache
         if (depFilePath !== file.realpath) {
             file.cache.addDeps(depFilePath);
         }
